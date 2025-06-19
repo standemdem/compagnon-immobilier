@@ -4,5 +4,5 @@ env/
 venv/
 .env
 *.env
-.DS_Store
-data/raw/
+data/raw/*.csv
+data/raw/*.gz
