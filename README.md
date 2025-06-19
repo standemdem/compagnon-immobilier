@@ -28,29 +28,23 @@ Remplace TON-UTILISATEUR par ton nom d'utilisateur ou organisation GitHub.
 
 2. 🧪 Créer et activer un environnement virtuel
 ```bash
-Copier
-Modifier
 python3 -m venv venv
 source venv/bin/activate
 ```
 Sur Windows (PowerShell) :
 
-powershell
-Copier
-Modifier
+```powershell
 .\venv\Scripts\Activate.ps1
+```
 3. 📦 Installer les dépendances
-bash
-Copier
-Modifier
+```bash
 pip install -r requirements.txt
+```
 4. 📥 Télécharger les fichiers de données
 Lance le script de téléchargement :
 
-bash
-Copier
-Modifier
+```bash
 python3 scripts/download_csvs.py
-
+```
 
 
