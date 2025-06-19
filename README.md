@@ -19,5 +19,38 @@ Projet Data Science collaboratif – Aide à l'achat immobilier en France.
 - @leblased'Ylan
 
 ## Lancement du projet 🚀
-À venir...
+1. 🔁 Cloner le dépôt
+```bash
+git clone git@github.com:TON-UTILISATEUR/compagnon-immobilier.git
+cd compagnon-immobilier
+```
+Remplace TON-UTILISATEUR par ton nom d'utilisateur ou organisation GitHub.
+
+2. 🧪 Créer et activer un environnement virtuel
+```bash
+Copier
+Modifier
+python3 -m venv venv
+source venv/bin/activate
+```
+Sur Windows (PowerShell) :
+
+powershell
+Copier
+Modifier
+.\venv\Scripts\Activate.ps1
+3. 📦 Installer les dépendances
+bash
+Copier
+Modifier
+pip install -r requirements.txt
+4. 📥 Télécharger les fichiers de données
+Lance le script de téléchargement :
+
+bash
+Copier
+Modifier
+python3 scripts/download_csvs.py
+
+
 
