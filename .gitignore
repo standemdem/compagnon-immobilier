@@ -4,5 +4,6 @@ env/
 venv/
 .env
 *.env
-data/raw/*.csv
-data/raw/*.gz
+*.csv
+*.parquet
+*.gz
