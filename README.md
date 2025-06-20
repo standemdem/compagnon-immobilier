@@ -42,8 +42,7 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 ```bash
 pip install -r requirements.txt
 ```
-4. 📥 Télécharger les fichiers de données
-Lance le script de téléchargement :
+4. 📥 Télécharger, extraire et convertir les fichiers de données en .parquet
 
 ```bash
 python3 scripts/dl_csvs.py
