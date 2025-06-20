@@ -28,7 +28,7 @@ def convert_to_parquet(input_path, output_folder):
 
     try:
         print(f"🧩 Converting: {input_path}")
-        df = pd.read_csv(input_path, sep=';', low_memory=False)
+        df = pd.read_csv(input_path, sep=',', low_memory=False)
         df.to_parquet(output_path, index=False)
         print(f"✅ Converted to: {output_path}")
     except Exception as e:
@@ -36,8 +36,6 @@ def convert_to_parquet(input_path, output_folder):
 
 if __name__ == "__main__":
     urls = {
-        "https://raw.githubusercontent.com/klopstock-dviz/immo_vis/master/data/ech_annonces_ventes_68.csv": "ech_annonces_ventes_68.csv",
-        "https://raw.githubusercontent.com/klopstock-dviz/immo_vis/master/data/ech_annonces_locations_68.csv": "ech_annonces_locations_68.csv",
         "https://files.data.gouv.fr/geo-dvf/latest/csv/2020/full.csv.gz": "full_2020.csv.gz",
         "https://files.data.gouv.fr/geo-dvf/latest/csv/2021/full.csv.gz": "full_2021.csv.gz",
         "https://files.data.gouv.fr/geo-dvf/latest/csv/2022/full.csv.gz": "full_2022.csv.gz",
