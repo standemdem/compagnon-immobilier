@@ -12,6 +12,7 @@ Projet Data Science collaboratif – Aide à l'achat immobilier en France.
 - `notebooks/` : notebooks d'exploration, modélisation, visualisation
 - `src/` : scripts Python (nettoyage, entraînement, affichage)
 - `outputs/` : graphiques, cartes, résultats
+- `scripts/` : automatisation de certaines tâches (dl datasets)
 
 ## Membres de l'équipe 👥
 - @standemdem
