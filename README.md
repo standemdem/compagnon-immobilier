@@ -16,7 +16,7 @@ Projet Data Science collaboratif – Aide à l'achat immobilier en France.
 ## Membres de l'équipe 👥
 - @standemdem
 - @NajehRhaiem
-- @leblased'Ylan
+- @YlanF
 
 ## Lancement du projet 🚀
 1. 🔁 Cloner le dépôt
