@@ -35,6 +35,7 @@ source venv/bin/activate
 Sur Windows (PowerShell) :
 
 ```powershell
+Set-ExecutionPolicy Unrestricted -Scope Process
 .\venv\Scripts\Activate.ps1
 ```
 3. 📦 Installer les dépendances
