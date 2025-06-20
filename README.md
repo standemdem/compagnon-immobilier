@@ -46,7 +46,7 @@ pip install -r requirements.txt
 Lance le script de téléchargement :
 
 ```bash
-python3 scripts/download_csvs.py
+python3 scripts/dl_csvs.py
 ```
 
 
