@@ -15,9 +15,9 @@ Projet Data Science collaboratif – Aide à l'achat immobilier en France.
 - `scripts/` : automatisation de certaines tâches (dl datasets)
 
 ## Membres de l'équipe 👥
-- @standemdem
-- @NajehRhaiem
-- @YlanF
+- [@standemdem](https://github.com/standemdem)
+- [@NajehRhaiem](https://github.com/NajehRhaiem)
+- [@YlanF](https://github.com/YlanF)
 
 ## Lancement du projet 🚀
 1. 🔁 Cloner le dépôt
