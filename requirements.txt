@@ -40,6 +40,7 @@ requests==2.32.4
 seaborn==0.13.2
 six==1.17.0
 stack-data==0.6.3
+scikit-learn==1.4.1
 tornado==6.5.1
 traitlets==5.14.3
 typing_extensions==4.14.0
