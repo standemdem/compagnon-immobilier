@@ -1,19 +1,15 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+import io
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
-import numpy as np
-# 📦 Imports
-import pandas as pd
-pd.set_option('display.max_columns', None)
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import root_mean_squared_error, r2_score
-
-import io
 
 
 
@@ -125,120 +121,87 @@ dfRFR = dfRFR.dropna()
 if dfRFR.empty:
     raise ValueError("Le DataFrame 'dfRFR' est vide après sélection des colonnes.")
 
-# Définir X (features) et y (target)
-X = dfRFR.drop(columns='valeur_fonciere')
-y = dfRFR['valeur_fonciere']
 
-# Vérification si X ou y sont vides
-if X.empty or y.empty:
-    raise ValueError("Les données pour 'X' ou 'y' sont vides. Vérifiez le contenu de 'dfRFR'.")
-
-# Ajuster test_size si nécessaire
-test_size = 0.2
-if len(dfRFR) < 5:
-    test_size = 1 / len(dfRFR)
-
-# Découper en train / test
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
-
-print("Split effectué avec succès !")
-print(f"Taille de l'ensemble d'entraînement : {len(X_train)}")
-print(f"Taille de l'ensemble de test : {len(X_test)}")
-
-
-try:
-    df = dfRFR
-except NameError:
-    st.error("Le dataset dfRFR n'est pas défini. Assure-toi de l'avoir chargé avant de lancer l'app.")
-    st.stop()
 
 # ---------------------------
-# Titre et aperçu du dataset
+# Début de l'app Streamlit
 # ---------------------------
 st.title("🌲 Random Forest Regressor - Analyse et Visualisation")
 st.subheader("Aperçu du dataset :")
-st.dataframe(df.head())
+st.dataframe(dfRFR.head())
 
-# ---------------------------
-# Informations sur le DataFrame
-# ---------------------------
-st.subheader("📊 Informations sur le DataFrame")
-
-
-buffer = io.StringIO()
-df.info(buf=buffer)  # write info to buffer instead of stdout
-info_str = buffer.getvalue()  # get string content
-buffer.close()
-
-print(info_str)
-df.info(buf=lambda x: buffer.append(x))
-st.text("".join(buffer))
 
 # ---------------------------
 # Choix des variables
 # ---------------------------
 st.subheader("🔧 Choix des variables")
-target = st.selectbox("Variable cible (y)", df.columns)
+target = st.selectbox("Variable cible (y)", dfRFR.columns)
+
 features = st.multiselect(
     "Variables explicatives (X)",
-    df.columns,
-    default=[col for col in df.columns if col != target]
+    dfRFR.columns,
+    default=[col for col in dfRFR.columns if col != target]
 )
 
-if features:
-    X = df[features]
-    y = df[target]
-
-    # ---------------------------
-    # Split train/test
-    # ---------------------------
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
-    st.write(f"Shape X_train : {X_train.shape} / X_test : {X_test.shape}")
-
-    # ---------------------------
-    # Random Forest Regressor
-    # ---------------------------
-    model = RandomForestRegressor(
-        n_estimators=100,
-        random_state=42,
-        n_jobs=-1
-    )
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-
-    # ---------------------------
-    # Métriques du modèle
-    # ---------------------------
-    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-    r2 = r2_score(y_test, y_pred)
-
-    st.subheader("📈 Performances du modèle")
-    st.metric("RMSE", f"{rmse:.4f}")
-    st.metric("R² Score", f"{r2:.4f}")
-
-    # ---------------------------
-    # Importance des variables
-    # ---------------------------
-    st.subheader("📌 Importance des variables")
-    importances = pd.Series(model.feature_importances_, index=X.columns).sort_values()
-    fig, ax = plt.subplots(figsize=(8, 5))
-    importances.plot.barh(ax=ax)
-    plt.title("Importance des variables")
-    st.pyplot(fig)
-
-    # ---------------------------
-    # Prédiction utilisateur
-    # ---------------------------
-    st.subheader("📝 Prédiction sur de nouvelles valeurs")
-    new_values = []
-    for col in X.columns:
-        val = st.number_input(f"{col}", value=float(X[col].mean()))
-        new_values.append(val)
-    
-    if st.button("Prédire"):
-        new_pred = model.predict([new_values])
-        st.success(f"Prédiction : {new_pred[0]:.4f}")
-else:
+if not features:
     st.info("Sélectionne au moins une variable explicative pour continuer.")
+    st.stop()
+
+X = dfRFR[features]
+y = dfRFR[target]
+
+# Vérifications basiques
+if X.empty or y.empty:
+    st.error("X ou y est vide après sélection. Vérifie tes colonnes.")
+    st.stop()
+
+# Ajuster test_size si nécessaire (garde ta logique)
+test_size = 0.2
+if len(dfRFR) < 5:
+    test_size = 1 / len(dfRFR)
+
+# Split train/test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
+st.markdown(f"**X_train shape :** {X_train.shape}<br>**X_test shape :** {X_test.shape}", unsafe_allow_html=True)
+
+# ---------------------------
+# Random Forest Regressor
+# ---------------------------
+model = RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+# ---------------------------
+# Métriques
+# ---------------------------
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+r2 = r2_score(y_test, y_pred)
+
+st.subheader("📈 Performances du modèle")
+st.metric("RMSE", f"{rmse:.4f}")
+st.metric("R² Score", f"{r2:.4f}")
+
+# ---------------------------
+# Importance des variables
+# ---------------------------
+st.subheader("📌 Importance des variables")
+importances = pd.Series(model.feature_importances_, index=X.columns).sort_values()
+fig, ax = plt.subplots(figsize=(8, 5))
+importances.plot.barh(ax=ax)
+plt.title("Importance des variables")
+st.pyplot(fig)
+
+# ---------------------------
+# Prédiction utilisateur
+# ---------------------------
+st.subheader("📝 Prédiction sur de nouvelles valeurs")
+new_values = []
+for col in X.columns:
+    default_val = float(X[col].mean()) if pd.api.types.is_numeric_dtype(X[col]) else 0.0
+    val = st.number_input(f"{col}", value=default_val)
+    new_values.append(val)
+
+if st.button("Prédire"):
+    # s'assurer que la forme est correcte (1, n_features)
+    pred = model.predict([new_values])
+    st.success(f"Prédiction : {pred[0]:.4f}")
