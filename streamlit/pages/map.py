@@ -7,7 +7,7 @@ st.set_page_config(page_title="Carte", layout="wide")
 
 # ----------- PARAMÈTRES -----------
 FILE_PATH = Path("data/parquet/optimized_2020.parquet")  # <- plutôt que chemin absolu
-MAX_POINTS = 100000
+MAX_POINTS = 10000
 
 # ----------- CHARGEMENT DES DONNÉES -----------
 @st.cache_data
