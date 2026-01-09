@@ -35,6 +35,7 @@ st.markdown(
     - Faciliter la prise de décision
     """
 )
+st.write("")
 
 # Technologies utilisées
 st.header("🛠️ Technologies utilisées")
@@ -63,9 +64,9 @@ with col3:
         """
         - Scikit-learn
         - Shap
-        - Streamlit
         """
     )
+st.write("")
 
 # Données
 st.header("📂 Données")
