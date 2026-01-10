@@ -86,4 +86,4 @@ st.write(
     **FLEURANT Ylan** 
     """
 )
-st.set_page_config(page_title="Compagnon Immobilier", layout="wide")
+
