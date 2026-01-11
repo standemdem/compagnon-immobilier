@@ -10,3 +10,4 @@ venv/
 *.gz
 .vscode
 !data/prod/**
+!data/parquet/optimized_2020.parquet
