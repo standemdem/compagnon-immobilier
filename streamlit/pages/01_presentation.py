@@ -33,7 +33,7 @@ Construire un modèle capable d’estimer le **prix au m²** d’un bien à part
 left, right = st.columns([1.15, 0.85], gap="large")
 
 with left:
-    st.subheader("🧭 Plan de lecture (storytelling)")
+    st.subheader("🧭 Plan de lecture")
     st.markdown(
         """
 1. **EDA 1 — Exploration naïve** : comprendre le dataset brut et ses limites (bruit, outliers, hétérogénéité).
@@ -45,7 +45,7 @@ with left:
 """
     )
 
-    st.subheader("✅ Périmètre final (ce que tu assumes dans l’étude)")
+    st.subheader("✅ Périmètre final")
     st.markdown(
         """
 - Travail final centré sur **les appartements** (réduction de variance / comparabilité).
