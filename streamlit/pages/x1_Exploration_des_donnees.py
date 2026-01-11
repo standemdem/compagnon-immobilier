@@ -4,11 +4,58 @@ from pathlib import Path
 from PIL import Image
 import os
 
-# ----------- PARAMÈTRES -----------
-FILE_PATH = Path("data/parquet/optimized_2020.parquet")  # <- plutôt que chemin absolu
+# =========================
+# CONFIG
+# =========================
+FILE_PATH = Path("data/parquet/optimized_2020.parquet")
 MAX_POINTS = 10000
 
+st.set_page_config(page_title="DVF — Mutation & multi-lignes", layout="wide")
+@st.cache_data()
+def load_data(path: str) -> pd.DataFrame:
+    return pd.read_parquet(path, engine='pyarrow')
 
+# =========================
+# LOAD
+# =========================
+try:
+    df = load_data(FILE_PATH)
+except Exception as e:
+    st.error(f"Impossible de charger le fichier : {FILE_PATH}\n\nErreur : {e}")
+    st.stop()
+
+# =========================
+# TITLE
+# =========================
+st.title("🧾 Comprendre la DVF : une mutation peut contenir plusieurs lignes")
+
+st.markdown(
+    """
+    Dans la base DVF, l’unité de base n’est **pas toujours “un bien = une ligne”**.
+    Une même transaction peut être décrite par **plusieurs lignes** (lots, dépendances, parcelles…).
+    """
+)
+
+# =========================
+# SECTION — DEFINITIONS
+# =========================
+st.header("1) Définition : qu’est-ce qu’une mutation ?")
+
+st.markdown(
+    """
+    Une **mutation** correspond à un **événement de transaction immobilière** (ex : une vente),
+    identifié par `id_mutation`.
+
+    ⚠️ Une mutation peut regrouper plusieurs éléments :
+    - un appartement **+ une dépendance** (cave, parking…)
+    - plusieurs lots vendus ensemble
+    - parfois plusieurs biens (cas plus rares)
+
+    👉 Conséquence : on observe souvent **plusieurs lignes pour un même `id_mutation`**.
+    """
+)
+
+st.divider()
 st.subheader("Données du fichier CSV")
 st.write("")
 with st.expander("Voir le descriptif des colonnes", expanded=False):
@@ -62,7 +109,8 @@ with st.expander("Voir le descriptif des colonnes", expanded=False):
         height=450
     )
 
-df = pd.read_parquet(FILE_PATH, engine='pyarrow')
+
+
 st.subheader("Aperçu du dataset")
 st.dataframe(df.head())
 

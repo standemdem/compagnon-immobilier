@@ -76,7 +76,7 @@ st.write("")
 st.header("📂 Données")
 st.write(
     """
-    Les données utilisées dans ce projet proviennent de celles fourni pour ce projet par Datascientest.\n
+    Les données utilisées dans ce projet proviennent de data.gouv.fr \n
     Elles sont nettoyées et prétraitées afin de garantir la qualité des analyses ainsi que de la prédiction.
     """
 )
