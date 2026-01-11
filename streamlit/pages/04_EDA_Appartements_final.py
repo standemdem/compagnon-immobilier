@@ -13,8 +13,8 @@ st.set_page_config(
 # --------------------------------------------------
 # Paths
 # --------------------------------------------------
-PATH_MODEL = Path("/home/standm/dev/compagnon-immobilier/data/prod/df_model_appart_2020.parquet.gz")
-PATH_STREAMLIT = Path("/home/standm/dev/compagnon-immobilier/data/prod/df_streamlit_appart_2020.parquet.gz")
+PATH_MODEL = Path("data/prod/df_model_appart_2020.parquet.gz")
+PATH_STREAMLIT = Path("data/prod/df_streamlit_appart_2020.parquet.gz")
 
 
 # --------------------------------------------------

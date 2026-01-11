@@ -13,8 +13,8 @@ st.set_page_config(
 # --------------------------------------------------
 # Paths
 # --------------------------------------------------
-PATH_BEFORE = Path("/home/standm/dev/compagnon-immobilier/data/parquet/optimized_2020.parquet")
-PATH_AFTER = Path("/home/standm/dev/compagnon-immobilier/data/processed/dvf_appartements_vente_2020.parquet.gz")
+PATH_BEFORE = Path("data/parquet/optimized_2020.parquet")
+PATH_AFTER = Path("data/processed/dvf_appartements_vente_2020.parquet.gz")
 
 # --------------------------------------------------
 # Loaders
