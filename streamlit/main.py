@@ -4,29 +4,33 @@ import streamlit as st
 st.set_page_config(
     page_title="Présentation du projet",
     page_icon="🏠",
-    layout="centered"
+    layout="wide"
 )
 
 # Titre principal
-st.title("Présentation du projet : Compagnon Immobilier")
-st.write("")
+st.title("Compagnon Immobilier")
+st.subheader("🏠 Prédiction du prix/m² des appartements en France")
+
 # Description générale
-st.write(
-    """
-    Ce projet a pour objectif de prédire le prix d'un appartement ou d'un lot d'appartements,\n
-    qui pourrait autant être utilisé par des agences immobiliere, que par des citoyens en recherche de biens. \n
-    Il s’inscrit dans un cadre de notre projet d'étude au sein de Datascientest et vise\n
-    à apporter une solution claire et efficace à la détermination du prix d'un bien dans une \n
-    zone précise.
-    """
-)
-st.markdown("---")
-
-
-# Objectifs
-st.header("🎯 Quels sont les objectifs ?")
 st.markdown(
     """
+    Cette application présente la **démarche de compréhension, de nettoyage et de
+    préparation des données** utilisée dans le cadre d’un projet de prédiction
+    du prix au mètre carré des appartements en France métropolitaine.  
+    Elle inclut également la **modélisation** et la **visualisation interactive** des résultats ainsi
+    que l'interprétabilité des modèles utilisés grâce à **SHAP**.  
+
+    Cet outil est destiné à être utilisé par des agences immobilières ainsi que par 
+    des particuliers en quête de biens immobiliers dans une zone précise.
+    """
+)
+st.divider()
+
+# Objectifs
+st.header("🎯 Quels sont les objectifs du projet?")
+st.markdown(
+    """
+    - Récupérer les données immobilières via des sources publiques ()
     - Comprendre et analyser les différentes données
     - Nettoyer et Préprocesser les datasets
     - Utiliser ou dévelloper un modèle pour prédire la variable cible
