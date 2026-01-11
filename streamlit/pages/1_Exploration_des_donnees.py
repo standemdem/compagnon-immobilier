@@ -177,7 +177,7 @@ with st.expander("Voir l'étude des variables catégorielles", expanded=False):
 st.subheader("Choix des variables catégorielles")
 st.write("")
 st.write("Nous avons décidé de nous concentrer sur la nature_mutation ainsi que type_mutation pour étudier les différentes répartitions")
-st.write("Voici quelques graphiques importants qui nous ont permis d'un peu plus comprendre le dataset ainsi que de prendre certaine déçision")
+st.write("Voici quelques graphiques importants qui nous ont permis d'un peu plus comprendre le dataset ainsi que de prendre certaine décision")
 
 
 st.subheader("Graphiques")
