@@ -86,23 +86,16 @@ with right:
 st.divider()
 st.subheader("🚀 Démarrer la visite")
 
-c1, c2, c3, c4 = st.columns(4)
+c1, c2, c3, c4, c5 = st.columns(5)
 
 with c1:
-    st.page_link("pages/02_EDA_Exploration_naive.py", label="📊 EDA 1 (naïf)")
+    st.page_link("pages/02_Exploration.py", label="📊 Exploration")
 with c2:
-    st.page_link("pages/03_EDA_Nettoyage.py", label="🧼 EDA 2 (nettoyage)")
+    st.page_link("pages/03_Nettoyage.py", label="🧼 Nettoyage")
 with c3:
-    st.page_link("pages/04_EDA_Appartements_final.py", label="🏢 EDA 3 (apparts)")
+    st.page_link("pages/04_Analyse_descriptive_finale.py", label="🏢 Analyse descriptive")
 with c4:
-    st.page_link("pages/07_Demo_prediction.py", label="🔮 Démo prédiction")
+    st.page_link("pages/05_Prediction.py", label="🔮 Prédiction")
+with c5:
+    st.page_link("pages/06_Conclusion.py", label="🏁 Conclusion")
 
-# --- Footer / limites ---
-with st.expander("ℹ️ Hypothèses & limites (résumé)"):
-    st.markdown(
-        """
-- DVF peut contenir des **valeurs extrêmes** et des **incohérences** (biens atypiques, saisie, regroupements).
-- La **localisation** (lat/lon) porte une grande partie du signal.
-- Le modèle dépend du **périmètre choisi** (ici : appartements) pour maintenir la comparabilité.
-"""
-    )
