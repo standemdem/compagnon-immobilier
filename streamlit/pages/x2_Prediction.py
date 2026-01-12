@@ -28,7 +28,7 @@ tabs = st.tabs([
     "📈 PDP",
     "🔍 Interpretation d'érreurs",
     "📐 Calibration",
-    "🌲 Surrogate model"
+    "🌲 Arbre de décision"
 ])
 
 # ===============================
