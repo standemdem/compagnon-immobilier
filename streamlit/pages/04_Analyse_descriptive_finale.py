@@ -63,7 +63,7 @@ df_model = ensure_prix_m2(df_model)  # au cas où
 
 # Sidebar (contrôles légers)
 st.sidebar.header("⚙️ Paramètres d'affichage")
-sample_n = st.sidebar.slider("Taille d'échantillon pour scatter/carte", 2000, 30000, 15000, step=1000)
+sample_n = st.sidebar.slider("Taille d'échantillon pour scatter/carte", 2000, 200000, 20000, step=1000)
 q_low = st.sidebar.slider("Quantile bas (coupe)", 0.0, 0.10, 0.01, step=0.005)
 q_high = st.sidebar.slider("Quantile haut (coupe)", 0.90, 1.0, 0.99, step=0.005)
 
@@ -103,16 +103,14 @@ Les contrôles suivants visent à vérifier :
         a1, a2, a3 = st.columns(3)
         a1.metric("Lignes", f"{ks['rows']:,}".replace(",", " "))
         a2.metric("Colonnes", f"{ks['cols']:,}".replace(",", " "))
-        a3.metric("Mutations", f"{ks['mutations']:,}".replace(",", " ") if not np.isnan(ks["mutations"]) else "—")
-        st.metric("Prix/m² médian", f"{ks['median']:.0f} €" if "median" in ks else "—")
+        a3.metric("Prix/m² médian", f"{ks['median']:.0f} €" if "median" in ks else "—")
 
     with c2:
         st.markdown("#### Jeu Modèle")
         a1, a2, a3 = st.columns(3)
         a1.metric("Lignes", f"{km['rows']:,}".replace(",", " "))
         a2.metric("Colonnes", f"{km['cols']:,}".replace(",", " "))
-        a3.metric("Mutations", f"{km['mutations']:,}".replace(",", " ") if not np.isnan(km["mutations"]) else "—")
-        st.metric("Prix/m² médian", f"{km['median']:.0f} €" if "median" in km else "—")
+        a3.metric("Prix/m² médian", f"{km['median']:.0f} €" if "median" in km else "—")
 
     # Null rates sur géoloc (reprend l’esprit du notebook)
     geo_cols = [c for c in ["latitude", "longitude"] if c in df_stream.columns]
@@ -227,12 +225,12 @@ Deux niveaux sont proposés :
     if {"latitude", "longitude", "prix_m2"}.issubset(df_stream.columns):
         dmap = df_stream.dropna(subset=["latitude", "longitude", "prix_m2"]).copy()
 
-        keep_bbox = st.checkbox("Filtrer à une bounding box France métro (approx.)", value=True)
-        if keep_bbox:
-            dmap = dmap[
-                (dmap["latitude"].between(41, 51.5)) &
-                (dmap["longitude"].between(-5.5, 9.8))
-            ]
+        # keep_bbox = st.checkbox("Filtrer à une bounding box France métro (approx.)", value=True)
+        # if keep_bbox:
+        #     dmap = dmap[
+        #         (dmap["latitude"].between(41, 51.5)) &
+        #         (dmap["longitude"].between(-5.5, 9.8))
+        #     ]
 
         dmap = dmap.sample(min(sample_n, len(dmap)), random_state=42) if len(dmap) > sample_n else dmap
 
