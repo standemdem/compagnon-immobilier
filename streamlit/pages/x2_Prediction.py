@@ -114,7 +114,21 @@ with tabs[1]:
 # ===============================
 with tabs[2]:
     st.header("Évaluation du modèle")
-    
+
+    st.markdown(
+            """
+            Pour les résultats du Random Forest on obtient : 
+
+            #### RMSE : 1055.2417058588
+
+            #### R2   : 0.8334907754404861
+
+            Ce résultat est plutot moyen voir mauvais pour une prédiction sur le prix au m² ce qui nous a amené à nous demander pourquoi ?
+            
+            Ainsi nous avons interprété les données suivantes pour essayer de comprendre ce que l'on pouvait améliorer
+            """
+        )
+
     with st.expander("Lecture des résultats"):
         st.markdown(
             """
