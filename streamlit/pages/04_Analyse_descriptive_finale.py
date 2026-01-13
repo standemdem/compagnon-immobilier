@@ -4,7 +4,7 @@ import numpy as np
 import plotly.express as px
 from pathlib import Path
 
-st.set_page_config(page_title="EDA finale — Appartements (DVF 2020)", page_icon="🏢", layout="wide")
+st.set_page_config(page_title="Analyse descriptive finale", page_icon="🏢", layout="wide")
 
 # -------------------------------------------------------------------
 # Sources (déjà générées en fin de notebook 06)
