@@ -1,93 +1,29 @@
 import streamlit as st
 
-# Configuration de la page
 st.set_page_config(
-    page_title="Présentation du projet",
+    page_title="Compagnon Immobilier",
     page_icon="🏠",
-    layout="wide"
+    layout="centered",
 )
 
-# Titre principal
-st.title("Compagnon Immobilier")
-st.subheader("🏠 Prédiction du prix/m² des appartements en France")
+st.title("🏠 Compagnon Immobilier")
+st.markdown("**Prédiction du prix au m² à partir des données DVF (France, 2020).**")
 
-# Description générale
-st.markdown(
-    """
-    Cette application présente la **démarche de compréhension, de nettoyage et de
-    préparation des données** utilisée dans le cadre d’un projet de prédiction
-    du prix au mètre carré des appartements en France métropolitaine.  
-    Elle inclut également la **modélisation** et la **visualisation interactive** des résultats ainsi
-    que l'interprétabilité des modèles utilisés grâce à **SHAP**.  
-
-    Cet outil est destiné à être utilisé par des agences immobilières ainsi que par 
-    des particuliers en quête de biens immobiliers dans une zone précise.
-    """
+st.write(
+    "Application de data science dédiée à l’exploration, au nettoyage, à l’analyse spatiale "
+    "et à la modélisation du prix de vente au m² des appartements."
 )
+
+st.markdown("**Contributeurs :** Ylan Fleurant & Stanislas de Montmarin — *Bouygues Telecom*")
+
 st.divider()
 
-# Objectifs
-st.header("🎯 Quels sont les objectifs du projet?")
-st.markdown(
-    """
-    - Récupérer les données immobilières via des sources publiques ()
-    - Comprendre et analyser les différentes données
-    - Nettoyer et Préprocesser les datasets
-    - Utiliser ou dévelloper un modèle pour prédire la variable cible
-    - Développer une solution interactive avec **Streamlit**
-    - Fournir une visualisation claire et intuitive
-    - Faciliter la prise de décision
-    """
-)
-st.write("")
-
-# Technologies utilisées
-st.header("🛠️ Technologies utilisées")
 col1, col2, col3 = st.columns(3)
-
 with col1:
-    st.markdown(
-        """
-        - Python   
-        - Streamlit  
-        - Pandas  
-        """
-    )
-
+    st.link_button("🔗 Repository GitHub", "https://github.com/standemdem/compagnon-immobilier/")
 with col2:
-    st.markdown(
-        """
-        - NumPy  
-        - Matplotlib / Plotly  
-        - Seaborn
-        """
-    )
-
+    st.link_button("🚀 App Streamlit", "https://compagnon-immobilier.streamlit.app/")
 with col3:
-    st.markdown(
-        """
-        - Scikit-learn
-        - Shap
-        """
-    )
-st.write("")
+    st.link_button("📊 source de données", "https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres")
 
-# Données
-st.header("📂 Données")
-st.write(
-    """
-    Les données utilisées dans ce projet proviennent de data.gouv.fr \n
-    Elles sont nettoyées et prétraitées afin de garantir la qualité des analyses ainsi que de la prédiction.
-    """
-)
-
-# Auteur / infos
-st.markdown("---")
-st.subheader("👤 Projet Réalisé par ")
-st.write(
-    """
-    **DE MONTMARIN Stanislas**  
-    **FLEURANT Ylan** 
-    """
-)
-
+st.caption("Compagnon Immobilier — Data Science & Machine Learning")

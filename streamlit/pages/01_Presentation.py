@@ -19,68 +19,71 @@ st.caption("Projet ML — Prédiction du prix au m² immobilier (DVF)")
 st.markdown(
     """
 ### 🎯 Objectif
-Construire un modèle capable d’estimer le **prix au m²** d’un bien à partir de variables DVF
-(surface, pièces, localisation, etc.), puis le rendre **explorable** via une **app Streamlit multipage**.
+Cette application présente la **démarche de compréhension, de nettoyage et de préparation des données**
+ utilisée dans le cadre d’un projet de prédiction du prix au mètre carré des appartements en France métropolitaine.
+Elle inclut également la **modélisation** et la **visualisation interactive** des résultats 
+ainsi que l'interprétabilité des modèles utilisés grâce à **SHAP**.
 
-### Pourquoi le prix au m² ?
-- plus comparable entre biens
-- moins dépendant de la surface que le prix total
-- plus robuste pour une approche territoriale (communes, départements, etc.)
+A terme, cet outil pourrait servir à des agents immobiliers, des acheteurs ou des vendeurs 
+souhaitant obtenir une estimation **rapide et fiable** du prix au m² d’un bien immobilier.
+
+
 """
 )
+st.markdown(
+    """
+    ### 🧭 Démarche projet
 
+**Objectif**  
+Construire un **MVP réaliste**, exploitable au-delà d’un simple exercice académique.
+
+**Décision clé**  
+Données collectées **à la source** via **data.gouv.fr**  
+→ *Demandes de Valeurs Foncières (DVF)*
+
+**Problème rencontré**  
+Volumes importants → **instabilité du kernel** sur des ressources matérielles limitées.
+
+**Solution mise en place**  
+Chaîne automatisée : **téléchargement → structuration → CSV → Parquet**
+
+**Impact**  
+✔️ Mémoire optimisée  
+✔️ Environnement stable  
+✔️ Analyse et modélisation possibles à grande échelle
+    """
+)
 # --- Layout 2 colonnes ---
-left, right = st.columns([1.15, 0.85], gap="large")
+left, right = st.columns(2)
 
 with left:
-    st.subheader("🧭 Plan de lecture")
-    st.markdown(
-        """
-1. **EDA 1 — Exploration naïve** : comprendre le dataset brut et ses limites (bruit, outliers, hétérogénéité).
-2. **EDA 2 — Approche pro** : nettoyage, règles métier, comparaisons avant/après, réduction du bruit.
-3. **EDA 3 — Focus appartements** : périmètre final stable → dataset exploitable pour le ML.
-4. **Feature engineering** : sélection/transformations, prévention du leakage.
-5. **Modélisation** : baseline vs modèle final, métriques & interprétation.
-6. **Démo** : formulaire d’estimation €/m² (et éventuellement prix total).
-"""
-    )
-
-    st.subheader("✅ Périmètre final")
-    st.markdown(
-        """
-- Travail final centré sur **les appartements** (réduction de variance / comparabilité).
-- Une démarche progressive : *brut → nettoyé → périmètre final*.
-- Orientation “produit” : résultat présentable + démo.
-"""
-    )
-
-with right:
     st.subheader("📦 Données & artefacts")
     # Ajuste les chemins selon ton repo
     status_dvf = file_status("data/parquet/optimized_2020.parquet")
     status_streamlit = file_status("data/prod/df_streamlit_appart_2020.parquet.gz")
-    status_model = file_status("data/models/model.joblib")
+    statuts_training = file_status("data/prod/df_model_appart_2020.parquet.gz")
+    status_model = file_status("data/models/prix_m2_pipeline_2020.joblib")
 
     st.markdown(
         f"""
-- Dataset DVF (source projet) : **{status_dvf}**
-- Dataset Streamlit (apparts final) : **{status_streamlit}**
-- Modèle entraîné : **{status_model}**
-"""
+        - Dataset DVF (source projet) : **{status_dvf}**
+        - Dataset Streamlit (apparts final) : **{status_streamlit}**
+        - Dataset Modélisation (apparts final) : **{statuts_training}**
+        - Modèle entraîné : **{status_model}**
+        """
     )
-
+with right:
     st.subheader("🛠️ Stack")
     st.markdown(
         """
-- **Python**, **pandas**, **numpy**
-- **scikit-learn** (pipeline, modèles, métriques)
+- **Python**, **pandas**, **numpy**, **matplotlib**, **seaborn** , **plotly**
+- **scikit-learn** (pipeline, modèles, métriques) **SHAP** (interprétabilité)
 - **Streamlit** (app multipage)
 - **parquet** (performance / taille)
 """
     )
 
-    st.subheader("▶️ Lancer l’app")
-    st.code("streamlit run app.py", language="bash")
+
 
 # --- CTA (call-to-action) ---
 st.divider()

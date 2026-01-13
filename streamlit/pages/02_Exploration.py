@@ -44,22 +44,12 @@ def safe_sample(df: pd.DataFrame, n: int, seed: int = 42) -> pd.DataFrame:
 # =========================
 st.sidebar.header("⚙️ Paramètres")
 
-default_path = "data/parquet/optimized_2020.parquet"
-data_path = st.sidebar.text_input("Chemin du dataset DVF brut (.parquet)", value=default_path)
+data_path = "data/parquet/optimized_2020.parquet"
 
 sample_n = st.sidebar.slider(
-    "Échantillon pour les graphes (pour éviter de tout charger en mémoire)",
+    "Échantillon",
     min_value=5_000, max_value=200_000, value=50_000, step=5_000
 )
-
-top_k_modalities = st.sidebar.slider(
-    "Top modalités (catégorielles)",
-    min_value=5, max_value=50, value=15, step=1
-)
-
-st.sidebar.markdown("---")
-show_preview = st.sidebar.checkbox("Afficher un aperçu (head)", value=True)
-preview_rows = st.sidebar.slider("Nombre de lignes dans l'aperçu", 5, 50, 15)
 
 # =========================
 # Load data
