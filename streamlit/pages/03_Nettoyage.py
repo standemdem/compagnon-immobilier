@@ -160,8 +160,8 @@ with tab4:
     st.subheader("📊 Indicateurs globaux — Avant / Après nettoyage")
 
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Lignes (avant)", f"{kb['lignes']:,}".replace(",", " "))
-    c2.metric("Mutations (avant)", f"{kb['mutations']:,}".replace(",", " "))
+    c1.metric("Lignes (avant)", f"2 065 003".replace(",", " "))
+    c2.metric("Mutations (avant)", f"834 523".replace(",", " "))
     c3.metric("Lignes (après)", f"{ka['lignes']:,}".replace(",", " "))
     c4.metric("Mutations (après)", f"{ka['mutations']:,}".replace(",", " "))
 
