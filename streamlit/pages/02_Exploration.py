@@ -158,7 +158,7 @@ with tab1:
             sizes = df.groupby("id_mutation").size()
             example_id = sizes.sort_values(ascending=False).index[0]
             st.write(f"Exemple id_mutation : **{example_id}** (nb lignes = {int(sizes.loc[example_id])})")
-            st.dataframe(df[df["id_mutation"] == example_id].head(30), use_container_width=True)
+            st.dataframe(df[df["id_mutation"] == example_id].head(30), width="stretch")
 
 
 # =========================
@@ -172,11 +172,11 @@ with tab2:
     left, right = st.columns([1.3, 1])
     with left:
         st.markdown("**Schéma des colonnes (type, manquants, cardinalité)**")
-        st.dataframe(schema.sort_values("taux_manquant_%", ascending=False), use_container_width=True, height=420)
+        st.dataframe(schema.sort_values("taux_manquant_%", ascending=False), width="stretch", height=420)
 
     with right:
         st.markdown("**Top colonnes les plus manquantes**")
-        st.dataframe(top_missing(df, k=20), use_container_width=True, height=420)
+        st.dataframe(top_missing(df, k=20), width="stretch", height=420)
 
     st.warning(
         "À ce stade, l’objectif est uniquement descriptif : la présence de valeurs manquantes et la diversité des types "
@@ -208,7 +208,7 @@ with tab3:
             labels={"value": "nombre_pieces_principales", "count": "Fréquence"}
         )
         fig.update_layout(bargap=0.05)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
 
         st.warning(
@@ -248,11 +248,11 @@ with tab3:
         )
         fig.update_traces(textposition="inside")
         fig.update_layout(xaxis_type="category")  # 🔑 force catégoriel
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
         with st.expander("Afficher le détail (table)"):
             top10_dep["proportion_%"] = (top10_dep["count"] / top10_dep["count"].sum() * 100).round(2)
-            st.dataframe(top10_dep, use_container_width=True)
+            st.dataframe(top10_dep, width="stretch")
 
         st.warning(
             "Les distributions numériques sont souvent asymétriques dans DVF et peuvent contenir des valeurs extrêmes. "
@@ -313,12 +313,12 @@ with tab4:
         )
         fig.update_xaxes(tickangle=-30)
 
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
         with st.expander(f"Afficher le détail — {col}"):
             detail = s.value_counts(dropna=False).rename("count").reset_index().rename(columns={"index": col})
             detail["pourcentage_%"] = (detail["count"] / detail["count"].sum() * 100).round(3)
-            st.dataframe(detail, use_container_width=True)
+            st.dataframe(detail, width="stretch")
 
     # --- nature_mutation ---
     st.subheader("4.1) Répartition de la nature de mutation")

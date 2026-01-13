@@ -155,7 +155,7 @@ Une approche standard consiste à **tronquer** la distribution (ex. 1%–99%) po
             title=f"Distribution du prix/m² (tronquée {int(q_low*100)}%–{int(q_high*100)}%)"
         )
         fig.update_layout(height=420)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
         # Scatter rapide (surface vs prix_m2) comme dans le notebook (mais échantillonné)
         if "surface_reelle_bati" in df_stream.columns:
@@ -170,7 +170,7 @@ Une approche standard consiste à **tronquer** la distribution (ex. 1%–99%) po
                 title="Surface vs prix/m² (échantillon, tronqué sur la cible)"
             )
             fig.update_layout(height=420)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
 
 # -------------------------------------------------------------------
 # 3) Localisation géographique
@@ -219,7 +219,7 @@ Deux niveaux sont proposés :
             xaxis_title="Département",
             yaxis_title="Prix médian (€/m²)",
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     # Carte (avec palette lisible + coupe quantiles)
     if {"latitude", "longitude", "prix_m2"}.issubset(df_stream.columns):
@@ -249,7 +249,7 @@ Deux niveaux sont proposés :
             title="Répartition spatiale des ventes (couleur = prix/m², échantillon)"
         )
         fig.update_layout(mapbox_style="carto-positron", margin=dict(l=10, r=10, t=50, b=10))
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     else:
         st.info("Coordonnées non disponibles dans le dataset Streamlit.")
 
@@ -301,7 +301,7 @@ L’objectif n’est pas de démontrer une relation linéaire forte, mais de :
             title="Matrice de corrélation — variables numériques sélectionnées (jeu Modèle)",
         )
         fig.update_layout(height=520)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
         st.markdown(
             """

@@ -192,7 +192,7 @@ with tab4:
         nbins=80,
         title="Avant nettoyage — distribution étalée et bruitée"
     )
-    st.plotly_chart(fig1, use_container_width=True)
+    st.plotly_chart(fig1, width="stretch")
 
     fig2 = px.histogram(
         df_after[df_after["prix_m2"] <= q_after],
@@ -200,7 +200,7 @@ with tab4:
         nbins=80,
         title="Après nettoyage — distribution stabilisée"
     )
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
     # --------------------------------------------------
     # Types de biens
@@ -218,13 +218,13 @@ with tab4:
         vc = df_before["type_local"].value_counts(normalize=True).mul(100).reset_index()
         vc.columns = ["type_local", "pct"]
         fig = px.bar(vc, x="type_local", y="pct", title="Avant nettoyage — mix des types de biens")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     with c2:
         vc = df_after["type_local"].value_counts(normalize=True).mul(100).reset_index()
         vc.columns = ["type_local", "pct"]
         fig = px.bar(vc, x="type_local", y="pct", title="Après nettoyage — périmètre maîtrisé")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
 # --------------------------------------------------
 # Conclusion
