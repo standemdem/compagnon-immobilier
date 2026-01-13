@@ -8,7 +8,7 @@ st.set_page_config(
 # ===============================
 # TAB – CONCLUSION
 # ===============================
-st.header("✅ Conclusion du projet")
+st.header("🏁 Conclusion du projet")
 
 conclusion_tabs = st.tabs([
     "🎯 Objectifs & démarche",
