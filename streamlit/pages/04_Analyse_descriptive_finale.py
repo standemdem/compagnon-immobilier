@@ -45,7 +45,7 @@ def kpis_prix(df: pd.DataFrame) -> dict:
 # -------------------------------------------------------------------
 # Page
 # -------------------------------------------------------------------
-st.title("🏢 EDA finale — Prix de vente des appartements (DVF 2020)")
+st.title("🏢 Analyse descriptive finale")
 
 df_stream = load_parquet(PATH_STREAMLIT)
 df_model = load_parquet(PATH_MODEL)
