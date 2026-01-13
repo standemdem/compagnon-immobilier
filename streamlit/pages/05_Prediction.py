@@ -225,7 +225,10 @@ with tabs[4]:
 with tabs[5]:
     st.header("Interprétation d'erreur")
 
-    with st.expander("Distribution des résidus"):
+    col1, col2 = st.columns(2)
+
+    with col1:
+        
         st.markdown(
             """
             Le graphique montre que le modele arrive moins à prédire les habitations avec un faible prix au m² très probablement car il y a moins de données concernant celles ci
@@ -236,10 +239,13 @@ with tabs[5]:
             """
         )
 
-    st.image(
-        Image.open("streamlit/assets/images/distribution_résidu.png"),
-        width=700
-    )
+    with col2:
+        st.image(
+            Image.open("streamlit/assets/images/distribution_résidu.png"),
+            width=700
+        )
+
+
 
 
 
@@ -250,7 +256,16 @@ with tabs[5]:
 with tabs[6]:
     st.header("calibration du modèle")
 
-    with st.expander("Interprétation de la calibration"):
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.image(
+            Image.open("streamlit/assets/images/calibration_du_modele.png"),
+            caption="Courbe de calibration du Random Forest",
+            width=650
+        )
+
+    with col2:
         st.markdown(
             """
             Ce graphique de calibration montre une bonne corrélation entre le prix réel et le prix prédit au m², indiquant que le modèle capte correctement la tendance générale du marché. 
@@ -260,12 +275,6 @@ with tabs[6]:
             On observe également une légère surévaluation des biens peu chers et une sous-évaluation des biens très chers, traduisant un effet de lissage du modèle.
             """
         )
-
-    st.image(
-        Image.open("streamlit/assets/images/calibration_du_modele.png"),
-        caption="Courbe de calibration du Random Forest",
-        width=700
-    )
 
 
 # ===============================
