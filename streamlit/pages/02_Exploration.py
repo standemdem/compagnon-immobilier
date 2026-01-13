@@ -139,7 +139,7 @@ with tab1:
         )
     st.image(
         "streamlit/assets/images/map_ventes_full_2020.png",
-        use_container_width=False
+        width="content"
     )
     st.warning(
         """
