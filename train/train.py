@@ -1,6 +1,8 @@
 # 📦 Imports
 import pandas as pd
 import numpy as np
+import joblib
+
 
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
@@ -104,3 +106,5 @@ r2 = r2_score(y_test, y_pred)
 print("Pipeline Random Forest")
 print("RMSE :", rmse)
 print("R2   :", r2)
+
+# joblib.dump(pipeline, "model.joblib")
