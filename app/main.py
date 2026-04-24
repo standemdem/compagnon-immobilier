@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
-from app.schemas import InputData
-from app.model_loader import get_model
-from app.security import verify_api_key
+from schemas import InputData
+from model_loader import get_model
+from security import verify_api_key
 import pandas as pd
 
 app = FastAPI()
