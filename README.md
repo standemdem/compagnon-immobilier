@@ -53,3 +53,8 @@ python3 scripts/dl_csvs.py
 ```
 python -m train.train
 ```
+
+## sur le conteneur docker pour vérifier que l'api marche 
+```
+curl http://127.0.0.1:8000
+```
