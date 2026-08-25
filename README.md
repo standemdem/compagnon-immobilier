@@ -49,3 +49,7 @@ python3 scripts/dl_csvs.py
 ```
 
 
+## note pour executer le train du model il faut se placer à la racine du projet et executer
+```
+python -m train.train
+```
