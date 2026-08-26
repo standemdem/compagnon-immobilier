@@ -49,12 +49,28 @@ python3 scripts/dl_csvs.py
 ```
 
 
+
+
+
+
+
+
 ## note pour executer le train du model il faut se placer à la racine du projet et executer
 ```
 python -m train.train
 ```
 
-## sur le conteneur docker pour vérifier que l'api marche 
+
+## pour faire une prédiction
 ```
-curl http://127.0.0.1:8000
+curl -X POST "http://127.0.0.1:8000/predict" \
+  -H "x-api-key: test_compagnon_immo" \
+  -d '{
+    "surface_reelle_bati": 85.5,
+    "nombre_pieces_principales": 4,
+    "latitude": 48.8985,
+    "longitude": 2.0932,
+    "has_dependance": 1,
+    "nom_commune": "Saint-Germain-en-Laye"
+  }'
 ```
